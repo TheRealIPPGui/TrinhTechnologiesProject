@@ -20,8 +20,9 @@ class Expense:
             for key, value in expenses.items():
                 print(f"{key} was an expense of {value['amount']} dollars, inside the {value["category"]} category, and having a description of: {value["description"]}")
     def get_summary(expenses):
-        summary = expenses.get("category")
+        summary = expenses.get("amount")
         print(summary)
+        input("Press Enter to continue...")
     def get_top_category(summary):
         pass
         
@@ -35,7 +36,7 @@ def main():
         print(f"Option 3 - View Summary")
         print(f"Option 4 - View Top Category")
         print(f"Option 5- Exit")
-        Chosen_Option = int(input("To choose an option, please enter an value 1-3 \n"))
+        Chosen_Option = int(input("To choose an option, please enter an value 1-5 \n"))
 
         if (Chosen_Option == 1):
            Expense.add_expenses(expenses)
