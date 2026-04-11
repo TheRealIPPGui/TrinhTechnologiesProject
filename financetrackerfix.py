@@ -6,10 +6,7 @@ def add_expenses(expenses):
         amount = input("Please enter the expense amount: \n")
         category = input("Please input the name of the category you want to store this expense in: \n")
         description = input("Please describe the expense: \n")
-        expenses.update({expense_name: {"amount":amount, "category":category, "description":description}})
-        summary.update({category:amount})
-        print("The expense has been added!")
-        input("Press Enter to continue...")
+        
 def view_expenses(expenses):
         if expenses == {}:
             print("There is nothing to display yet!")
