@@ -14,6 +14,7 @@ def add_expenses(expenses):
                  pass
         except:
              pass
+        #This pass is so that rather than printing a msg, it moves to the next try and except so that it only has to display one print message telling the user to fix their stuff
         category = input("Please input the name of the category you want to store this expense in: \n")
         description = input("Please describe the expense: \n")
         try:
