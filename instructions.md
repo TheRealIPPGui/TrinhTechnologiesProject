@@ -78,7 +78,7 @@ Add two functions that process the expense data and **return** values (not just 
 
 **Done when:** You can add several expenses across different categories, view a per-category breakdown, and see which category has the highest total.
 
----
+---a
 
 ## Stage 3 — Input Validation and Error Handling
 
