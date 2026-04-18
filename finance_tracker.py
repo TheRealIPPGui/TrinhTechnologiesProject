@@ -2,18 +2,22 @@ import json
 
 expenses = {}
 summary = {}
+mk = None #Max value
+mv = 0
+
 def add_expenses(expenses):
         input("Note: Please avoid duplicates for expense names, as they will be overwritten! Press Enter to continue...")
         expense_name = input("Please name the expense: \n")
+    #You can't return to a try function once interuppted, so make a loop of some sort
         try:
-            amount = float(input("Please enter the expense amount: \n"))
-            while amount < 0:
-                print("This value cannot be 0")
-                amount = float(input("Please enter the expense amount: \n"))
-            else:
-                 pass
-        except:
-             pass
+             amount = float(input("Please enter the expense amount: \n"))
+             if amount == float:
+                    while amount < 0:
+                     print("This value cannot be 0")
+                     amount = float(input("Please enter the expense amount: \n"))
+                
+        except ValueError:
+            print("Please enter a positive number!")
         #This pass is so that rather than printing a msg, it moves to the next try and except so that it only has to display one print message telling the user to fix their stuff
         category = input("Please input the name of the category you want to store this expense in: \n")
         description = input("Please describe the expense: \n")
@@ -32,6 +36,7 @@ def add_expenses(expenses):
             try:
                 summary.update({category:amount})
             except:
+                 pass
                  print("Please enter a valid integer for amount!")
                  input("Press Enter to continue...")
         
@@ -52,19 +57,27 @@ def get_summary(expenses):
              input("Press Enter to continue...")
         else:
             
+            
            
             return(summary)
+        
             #Maybe a for loop where it takes in each category and updates it
 def get_top_category(summary):
     if summary == {}:
          return("There is nothing to display!")
     else:
-         max = max(summary, value = summary.get)
-         return(max)
+         for k, v in summary.items():
+              global mv
+              if v>   mv:
+                
+                   mv = v
+                   mk = k
+         print(f"The top category is {mk} with the total being {mv}")
 
 def save_expenses(expenses, filename="expenses.json"):
      with open('./expenses.json', 'w') as output:
           json.dump(expenses, output)
+          #expenses.write("\n")
      #Use a for append instead of w if you want to append instead of overwriting
 
 data = []
@@ -116,6 +129,7 @@ def main():
             
             elif (Chosen_Option == 3):
                 print(get_summary(expenses))
+           
             elif(Chosen_Option == 4):
                 print(get_top_category(summary))
                 
