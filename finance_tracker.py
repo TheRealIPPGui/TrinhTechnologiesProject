@@ -4,6 +4,8 @@ expenses = {}
 summary = {}
 mk = None #Max value
 mv = 0
+data = []
+
 
 def add_expenses(expenses):
         input("Note: Please avoid duplicates for expense names, as they will be overwritten! Press Enter to continue...")
@@ -73,25 +75,44 @@ def get_top_category(summary):
                    mv = v
                    mk = k
          print(f"The top category is {mk} with the total being {mv}")
+    #def save_expenses(expenses_dict, new_expense, filename="expenses.json"):
 
-def save_expenses(expenses, filename="expenses.json"):
-     with open('./expenses.json', 'w') as output:
-          json.dump(expenses, output)
+def save_expenses(expenses_dict, filename="expenses.json"):
+  # Update the expenses dictionary here before writing to the file
+  expenses_dict
+
+  # Open the file as write to rewrite ("a" is append) the entire JSON file after we update the expenses dict
+  with open(filename, "w") as output:
+    #json.dump(expenses, output, indent=2) # indent=2 makes the JSON look nice
+     json.dump(expenses, output)
+#def save_expenses(expenses, filename="expenses.json"):
+     #with open('./expenses.json', 'w') as output:
+          #json.dump(expenses, output)
           #expenses.write("\n")
      #Use a for append instead of w if you want to append instead of overwriting
 
-data = []
 def load_expenses(filename="expenses.json"):
+     data = []
      try:
-        with open('./expenses.json', 'r') as input:
-            data = json.load(input)
-        print(data)
+        if data == []:
+            print("There is nothing!")
+        else:
+            with open('./expenses.json', 'r') as input:
+                data = json.load(input)
+            print(data)
+            #with open('./expenses.json', 'r') as input:
+                #for line in input:
+                    #data.append(json.load(input))
+                #print(data)
+
+
+
+
      except FileNotFoundError:
           try:
             return(data)
           except:
-               print("")
-          
+               print("")          
     
 
 
