@@ -1,18 +1,15 @@
 import json
-
-expenses = {}
-summary = {}
-mk = None #Max value
-mv = 0
-data = []
+    
 
 
-def add_expenses(expenses):
+
+
+def add_expenses(expenses, summary):
         input("Note: Please avoid duplicates for expense names, as they will be overwritten! Press Enter to continue...")
-        expense_name = input("Please name the expense: \n")
+        expense_name: str = input("Please name the expense: \n")
     #You can't return to a try function once interuppted, so make a loop of some sort
         try:
-             amount = float(input("Please enter the expense amount: \n"))
+             amount: float = float(input("Please enter the expense amount: \n"))
              if amount == float:
                     while amount < 0:
                      print("This value cannot be 0")
@@ -36,7 +33,7 @@ def add_expenses(expenses):
         else:
              #summary[category].append(category) Chase's code
             try:
-                summary.update({category:amount})
+                summary.update({category:   amount})
             except:
                  pass
                  print("Please enter a valid integer for amount!")
@@ -45,7 +42,7 @@ def add_expenses(expenses):
              
              
 
-def view_expenses(expenses):
+def view_expenses(expenses: dict):
         if expenses == {}:
             print("There is nothing to display yet!")
             input("Press Enter to continue...")
@@ -53,7 +50,7 @@ def view_expenses(expenses):
             for key, value in expenses.items():
                 print(f"{key} was an expense of {value['amount']} dollars, inside the {value["category"]} category, and having a description of: {value["description"]}")
                 input("Press Enter to continue...")
-def get_summary(expenses):
+def get_summary(expenses: dict, summary: dict):
         if summary == {}:
              print("There is nothing to display!")
              input("Press Enter to continue...")
@@ -64,7 +61,7 @@ def get_summary(expenses):
             return(summary)
         
             #Maybe a for loop where it takes in each category and updates it
-def get_top_category(summary):
+def get_top_category(summary: dict):
     if summary == {}:
          return("There is nothing to display!")
     else:
@@ -77,14 +74,16 @@ def get_top_category(summary):
          print(f"The top category is {mk} with the total being {mv}")
     #def save_expenses(expenses_dict, new_expense, filename="expenses.json"):
 
-def save_expenses(expenses_dict, filename="expenses.json"):
+def save_expenses(expenses_dict: dict, filename="expenses.json"):
   # Update the expenses dictionary here before writing to the file
   expenses_dict
 
   # Open the file as write to rewrite ("a" is append) the entire JSON file after we update the expenses dict
+  
   with open(filename, "w") as output:
     #json.dump(expenses, output, indent=2) # indent=2 makes the JSON look nice
-     json.dump(expenses, output)
+        json.dump(expenses_dict, output)
+ 
 #def save_expenses(expenses, filename="expenses.json"):
      #with open('./expenses.json', 'w') as output:
           #json.dump(expenses, output)
@@ -92,18 +91,18 @@ def save_expenses(expenses_dict, filename="expenses.json"):
      #Use a for append instead of w if you want to append instead of overwriting
 
 def load_expenses(filename="expenses.json"):
-     data = []
      try:
-        if data == []:
-            print("There is nothing!")
-        else:
+
             with open('./expenses.json', 'r') as input:
                 data = json.load(input)
-            print(data)
+            return(data)
             #with open('./expenses.json', 'r') as input:
                 #for line in input:
                     #data.append(json.load(input))
                 #print(data)
+
+     except FileNotFoundError:
+         print("No expense files found, create a new one! \n")
 
 
 
@@ -120,6 +119,12 @@ def load_expenses(filename="expenses.json"):
 
 
 def main():
+    expenses: dict = {}
+    summary:dict = {}    
+    mk = None #Max value
+    mv = 0
+
+
     load_expenses(filename="expenses.json")
     while True:
 
@@ -136,7 +141,7 @@ def main():
         
              
             if (Chosen_Option == 1):
-                add_expenses(expenses)
+                add_expenses(expenses, summary)
             
             elif (Chosen_Option == 2):
                 view_expenses(expenses)
@@ -149,7 +154,7 @@ def main():
                 break
             
             elif (Chosen_Option == 3):
-                print(get_summary(expenses))
+                print(get_summary(expenses, summary))
            
             elif(Chosen_Option == 4):
                 print(get_top_category(summary))
