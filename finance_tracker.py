@@ -4,7 +4,7 @@ import json
 
 
 
-def add_expenses(expenses, summary):
+def add_expenses(expenses: dict, summary: dict) -> None:
         input("Note: Please avoid duplicates for expense names, as they will be overwritten! Press Enter to continue...")
         expense_name: str = input("Please name the expense: \n")
     #You can't return to a try function once interuppted, so make a loop of some sort
@@ -42,7 +42,7 @@ def add_expenses(expenses, summary):
              
              
 
-def view_expenses(expenses: dict):
+def view_expenses(expenses: dict) -> None:
         if expenses == {}:
             print("There is nothing to display yet!")
             input("Press Enter to continue...")
@@ -61,7 +61,7 @@ def get_summary(expenses: dict, summary: dict):
             return(summary)
         
             #Maybe a for loop where it takes in each category and updates it
-def get_top_category(summary: dict):
+def get_top_category(summary: dict) -> None:
     if summary == {}:
          return("There is nothing to display!")
     else:
@@ -74,7 +74,7 @@ def get_top_category(summary: dict):
          print(f"The top category is {mk} with the total being {mv}")
     #def save_expenses(expenses_dict, new_expense, filename="expenses.json"):
 
-def save_expenses(expenses_dict: dict, filename="expenses.json"):
+def save_expenses(expenses_dict: dict, filename="expenses.json") -> None:
   # Update the expenses dictionary here before writing to the file
   expenses_dict
 
@@ -90,7 +90,7 @@ def save_expenses(expenses_dict: dict, filename="expenses.json"):
           #expenses.write("\n")
      #Use a for append instead of w if you want to append instead of overwriting
 
-def load_expenses(filename="expenses.json"):
+def load_expenses(filename="expenses.json") -> list:
      try:
 
             with open('./expenses.json', 'r') as input:
